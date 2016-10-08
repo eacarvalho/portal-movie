@@ -1,83 +1,30 @@
-<section class="lists">
+<div>
 
-    <div class="row">
-        <div id="mensagens" class="col-md-12">
-            <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}" class="ns-alert" close="ctrl.closeMessage($index)">
-                {{alert.msg}}
-            </alert>
-        </div>
-    </div>
+    <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-sort="title">Title</th>
+            <th st-sort="originalTitle">Original Title</th>
+            <th st-sort="year">Year</th>
+            <th st-sort="rating">Rating</th>
+            <th>Duration</th>
+            <th st-sort="releasedDate">Released</th>
+            <th>imdbID</th>
+            <th>Imdb Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="movie in result">
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.originalTitle }}</td>
+            <td>{{ movie.year }}</td>
+            <td>{{ movie.rating }}</td>
+            <td>{{ movie.duration }}</td>
+            <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
+            <td>{{ movie.imdbID }}</td>
+            <td>{{ movie.imdbRating }}</td>
+        </tr>
+        </tbody>
+    </table>
 
-    <div class="white well">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group p-10 pull-right p-r-1">
-                    <ui-select ng-model="ctrl.movie.selected" theme="bootstrap" on-select="ctrl.getByCode($select.selected.code)">>
-                        <ui-select-match allow-clear="true" placeholder="Select or search a movie in the list...">{{$select.selected.title}}
-                        </ui-select-match>
-                        <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
-                            <div ng-bind-html="movie.title | highlight: $select.search"></div>
-                        </ui-select-choices>
-                    </ui-select>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="white well">
-        <div class="row">
-            <div class="table-responsive white">
-
-                <table ng-table="ctrl.tableParams" resize-column
-                       class="table table-condensed table-valign table-full table-full-small">
-                    <thead>
-                    <tr>
-                        <th class="col-md-1">Capa</th>
-                        <th class="col-md-1" translate="movie.title" />
-                        <th class="col-md-1">Titulo Original</th>
-                        <th class="col-md-1">Ano</th>
-                        <th class="col-md-1">Rating</th>
-                        <th class="col-md-1">Tipo</th>
-                        <th class="col-md-1">Duracao</th>
-                        <th class="col-md-1">Data</th>
-                        <th class="col-md-1">Imdb</th>
-                        <th class="col-md-1">Imdb Rating</th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-center">
-                    <tr ng-if="ctrl.movies.length === 0">
-                        <td colspan="10">Nao foram encontrados registros</td>
-                    </tr>
-                    <tr ng-if="ctrl.movies.length > 0" ng-repeat="movie in ctrl.movies" class="grid-row linha-grid" ns-index="$index" ns-row="movie" ns-prevent-new-column="true">
-                        <td><img ng-src="{{movie.poster}}" class="img-thumbnail hand-pointer produto-imagem" width="50" height="50"/></td>
-                        <td>{{ movie.title }}</td>
-                        <td>{{ movie.originalTitle }}</td>
-                        <td>{{ movie.year }}</td>
-                        <td>{{ movie.rating }}</td>
-                        <td>{{ movie.type }}</td>
-                        <td>{{ movie.duration }}</td>
-                        <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
-                        <td>{{ movie.imdbID }}</td>
-                        <td>{{ movie.imdbRating }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <br/>
-
-    <div class="white well">
-        <div class="row text-center">
-            <div class="col-md-8 text-left">
-                <div class="pagination">
-                </div>
-            </div>
-            <div class="col-md-4 text-right">
-                <pagination boundary-links="true" total-items="ctrl.totalItems" items-per-page="ctrl.pageSize"
-                            max-size="ctrl.maxSize" ng-model="ctrl.paginaAtual" ng-change="ctrl.pageChanged()"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
-            </div>
-        </div>
-    </div>
-</section>
+</div>

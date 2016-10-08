@@ -5,7 +5,7 @@
         .module('portalMovie.movie')
         .controller('MovieCtrl', ['$scope', '$http', 'Factory', 'MovieService', MovieCtrl]);
 
-    function MovieCtrl($scope, $http, MVFactory, MovieService) {
+    function MovieCtrl($scope, $http, Factory, MovieService) {
 
         var ctrl = this;
         ctrl.alerts = [];
@@ -15,7 +15,7 @@
         ctrl.maxSize = 5;
         ctrl.totalItems = 0;
         ctrl.paginaAtual = 1;
-        ctrl.pageSize = MVFactory.PAGINATION_PAGE_SIZE;
+        ctrl.pageSize = Factory.PAGINATION_PAGE_SIZE;
         ctrl.pageChanged = pageChanged;
 
         ctrl.moviesCombo = [];
