@@ -4,6 +4,6 @@ angular.module('config', [])
 
     .constant('ENV', {
         name: 'development',
-        movieApi: 'http://movie.iworks.com.br'
+        movieApi: 'http://api.movie.iworks.com.br'
     })
 ;
