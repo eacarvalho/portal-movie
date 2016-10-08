@@ -7,9 +7,10 @@
 
         var service = this;
         var $http = Api.movie;
+        var size = 1000;
 
         service.list = function () {
-            return $http.get('/movies');
+            return $http.get('/movies?size=' + size);
         };
 
         service.getByCode = function (code) {

@@ -3,6 +3,7 @@
 
     angular.module('portalMovie',
         ['ngRoute',
+            'ngSanitize',
             'ui.bootstrap',
             'config',
             'portalMovie.movie',

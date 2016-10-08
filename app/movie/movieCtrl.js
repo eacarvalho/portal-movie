@@ -10,14 +10,6 @@
         var ctrl = this;
         ctrl.alerts = [];
 
-        //  PAGINATION SETUP
-        var primeiraPagina = 1;
-        ctrl.maxSize = 5;
-        ctrl.totalItems = 0;
-        ctrl.paginaAtual = 1;
-        ctrl.pageSize = Factory.PAGINATION_PAGE_SIZE;
-        ctrl.pageChanged = pageChanged;
-
         ctrl.moviesCombo = [];
         ctrl.movies = [];
         ctrl.movie = {};
@@ -25,6 +17,7 @@
 
         ctrl.list = list;
         ctrl.getByCode = getByCode;
+        ctrl.rowSelected = rowSelected;
 
         init();
 
@@ -80,6 +73,14 @@
             }
         }
 
+        function rowSelected(row) {
+            if (row === undefined) {
+                list();
+            } else {
+                ctrl.movie.selected = row;
+            }
+        }
+
         function setMovie(movie) {
             ctrl.movie = {
                 code: movie.code,
@@ -97,11 +98,6 @@
                 imdbID: movie.imdbID,
                 poster: movie.poster
             };
-        }
-
-        function pageChanged(number) {
-            ctrl.paginaAtual = number || ctrl.paginaAtual;
-            // buscar();
         }
 
         function init() {

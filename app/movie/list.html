@@ -1,5 +1,30 @@
-<div>
+<div class="col-md-12" id="mensagens">
+    <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}" class="ns-alert"
+           close="ctrl.closeMessage($index)">
+        {{alert.msg}}
+    </alert>
+</div>
 
+<div class="col-md-12">
+    <div class="input-group pull-right">
+        <ui-select ng-model="ctrl.movie.selected"
+                   on-select="ctrl.getByCode($select.selected.code)"
+                   theme="select2">
+            <ui-select-match allow-clear="true" placeholder="Select or search a movie in the list...">
+                {{$select.selected.title}}
+            </ui-select-match>
+            <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
+                <span ng-bind-html="movie.title | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <br/>
+</div>
+
+<div class="col-md-12 table-responsive">
     <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
         <thead>
         <tr>
@@ -14,7 +39,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="movie in result">
+        <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
             <td>{{ movie.title }}</td>
             <td>{{ movie.originalTitle }}</td>
             <td>{{ movie.year }}</td>
@@ -25,6 +50,27 @@
             <td>{{ movie.imdbRating }}</td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="8" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
     </table>
+</div>
 
+<div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+        <span ng-if="!ctrl.movie.selected">Select a movie for check the plot</span>
+        <span ng-if="ctrl.movie.selected">{{ctrl.movie.selected.plot}}</span>
+    </div>
+</div>
+
+<div class="col-md-12" ng-if="ctrl.movie.selected.poster">
+    <div class="col-sm-6 col-md-2">
+        <div class="thumbnail">
+            <img ng-src="{{ctrl.movie.selected.poster}}">
+        </div>
+    </div>
 </div>
