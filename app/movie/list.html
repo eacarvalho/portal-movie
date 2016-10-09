@@ -21,40 +21,42 @@
     </div>
 </div>
 
-<div class="col-md-12 table-responsive">
-    <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
-        <thead>
-        <tr>
-            <th st-sort="title">Title</th>
-            <th st-sort="originalTitle">Original Title</th>
-            <th st-sort="year">Year</th>
-            <th st-sort="rating">Rating</th>
-            <th>Duration</th>
-            <th st-sort="releasedDate">Released</th>
-            <th>imdbID</th>
-            <th>Imdb Rating</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.originalTitle }}</td>
-            <td>{{ movie.year }}</td>
-            <td>{{ movie.rating }}</td>
-            <td>{{ movie.duration }}</td>
-            <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
-            <td>{{ movie.imdbID }}</td>
-            <td>{{ movie.imdbRating }}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="8" class="text-center">
-                <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort="title">Title</th>
+                <th st-sort="originalTitle">Original Title</th>
+                <th st-sort="year">Year</th>
+                <th st-sort="rating">Rating</th>
+                <th>Duration</th>
+                <th st-sort="releasedDate">Released</th>
+                <th>imdbID</th>
+                <th>Imdb Rating</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
+                <td>{{ movie.title }}</td>
+                <td>{{ movie.originalTitle }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.rating }}</td>
+                <td>{{ movie.duration }}</td>
+                <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
+                <td>{{ movie.imdbID }}</td>
+                <td>{{ movie.imdbRating }}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 <div class="col-md-12">
