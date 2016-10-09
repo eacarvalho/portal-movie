@@ -5,19 +5,21 @@
     </alert>
 </div>
 
-<div class="col-md-12">
-    <div class="input-group pull-right">
-        <ui-select ng-model="ctrl.movie.selected"
-                   on-select="ctrl.getByCode($select.selected.code)"
-                   theme="select2">
-            <ui-select-match allow-clear="true" placeholder="Select or search a movie in the list...">
-                {{$select.selected.title}}
-            </ui-select-match>
-            <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
-                <span ng-bind-html="movie.title | highlight: $select.search"></span>
-            </ui-select-choices>
-        </ui-select>
-        <br/><br/>
+<div class="container">
+    <div class="col-md-12">
+        <div class="input-group pull-right">
+            <ui-select ng-model="ctrl.movie.selected"
+                       on-select="ctrl.getByCode($select.selected.code)"
+                       theme="select2">
+                <ui-select-match allow-clear="true" placeholder="Select or search a movie in the list...">
+                    {{$select.selected.title}}
+                </ui-select-match>
+                <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
+                    <span ng-bind-html="movie.title | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+            <br/><br/>
+        </div>
     </div>
 </div>
 

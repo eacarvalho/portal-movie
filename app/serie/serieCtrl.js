@@ -80,6 +80,7 @@
         }
 
         function init() {
+            ctrl.serie.selected = {};
             list();
         }
     }
