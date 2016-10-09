@@ -11,7 +11,7 @@
                    on-select="ctrl.getByTitleAndSeason($select.selected.title, $select.selected.season)"
                    theme="select2">
             <ui-select-match allow-clear="true" placeholder="Select or search a serie in the list...">
-                {{$select.selected.title}}
+                {{$select.selected.title}} {{$select.selected.season}}
             </ui-select-match>
             <ui-select-choices repeat="serie in ctrl.seriesCombo | filter: $select.search">
                 <span ng-bind-html="serie.title | highlight: $select.search"></span>
@@ -19,13 +19,6 @@
             </ui-select-choices>
         </ui-select>
         <br/><br/>
-    </div>
-</div>
-
-<div class="col-md-12" ng-if="ctrl.serie.selected">
-    <div class="alert alert-info" role="alert">
-        <strong>{{ctrl.serie.selected.title}}</strong> Season {{ctrl.serie.selected.season}} (total Seasons: {{ctrl.serie.selected.totalSeasons}})
-        <div></div>
     </div>
 </div>
 
@@ -56,5 +49,12 @@
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="col-md-12" ng-if="ctrl.serie.selected">
+    <div class="alert alert-info" role="alert">
+        <strong>{{ctrl.serie.selected.title}}</strong>: Season {{ctrl.serie.selected.season}} of {{ctrl.serie.selected.totalSeasons}}
+        <div></div>
     </div>
 </div>
