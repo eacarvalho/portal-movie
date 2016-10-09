@@ -1,3 +1,60 @@
-<section class="lists">
-teste{{ctrl.teste}}
-</section>
+<div class="col-md-12" id="mensagens">
+    <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}" class="ns-alert"
+           close="ctrl.closeMessage($index)">
+        {{alert.msg}}
+    </alert>
+</div>
+
+<div class="col-md-12">
+    <div class="input-group pull-right">
+        <ui-select ng-model="ctrl.serie.selected"
+                   on-select="ctrl.getByTitleAndSeason($select.selected.title, $select.selected.season)"
+                   theme="select2">
+            <ui-select-match allow-clear="true" placeholder="Select or search a serie in the list...">
+                {{$select.selected.title}}
+            </ui-select-match>
+            <ui-select-choices repeat="serie in ctrl.seriesCombo | filter: $select.search">
+                <span ng-bind-html="serie.title | highlight: $select.search"></span>
+                <small ng-bind-html="serie.season | highlight: $select.search"></small>
+            </ui-select-choices>
+        </ui-select>
+        <br/><br/>
+    </div>
+</div>
+
+<div class="col-md-12" ng-if="ctrl.serie.selected">
+    <div class="alert alert-info" role="alert">
+        <strong>{{ctrl.serie.selected.title}}</strong> Season {{ctrl.serie.selected.season}} (total Seasons: {{ctrl.serie.selected.totalSeasons}})
+        <div></div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="table-responsive">
+        <table st-table="result" st-safe-src="ctrl.serie.episodes" class="table table-striped">
+            <thead>
+            <tr>
+                <th st-sort="number">#</th>
+                <th st-sort="title">Title</th>
+                <th st-sort="releasedDate">Released</th>
+                <th st-sort="rating">Rating</th>
+                <th>Imdb Rating</th>
+                <th>Imdb</th>
+                <th st-sort="watched">Watched</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr st-select-row="episode" ng-click="ctrl.rowSelected(episode)" ng-repeat="episode in result">
+                <td>{{ episode.number }}</td>
+                <td>{{ episode.title }}</td>
+                <td>{{ episode.releasedDate | date:'dd/MM/yyyy'}}</td>
+                <td>{{ episode.rating }}</td>
+                <td>{{ episode.imdbRating }}</td>
+                <td>{{ episode.imdbID }}</td>
+                <td>{{ episode.watched }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
