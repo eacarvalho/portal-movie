@@ -6,7 +6,7 @@ var apiUrl = process.env.API_URL;
 var configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'http://localhost:8080\'});'
 
 if (apiUrl !== undefined) {
-    configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'http://' + apiUrl + '\'});'
+    configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'' + apiUrl + '\'});'
 }
 
 fs.writeFile('./app/config.js', configFileContent, function (err) {
