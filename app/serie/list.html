@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<div class="col-md-12" ng-if="ctrl.serie.selected">
+<div class="col-md-12" ng-if="ctrl.showSerieDetails()">
   <div class="alert alert-info" role="alert">
     <strong>{{ctrl.serie.selected.title}}</strong>: Season {{ctrl.serie.selected.season}} of
     {{ctrl.serie.selected.totalSeasons}}

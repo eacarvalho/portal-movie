@@ -61,8 +61,8 @@
 
 <div class="col-md-12">
   <div class="alert alert-info" role="alert">
-    <span ng-if="!ctrl.movie.selected">Select a movie for check the plot</span>
-    <span ng-if="ctrl.movie.selected">{{ctrl.movie.selected.plot}}</span>
+    <span ng-if="ctrl.movie.selected.title === undefined">Select a movie for view the plot</span>
+    <span ng-if="ctrl.movie.selected.title !== undefined">{{ctrl.movie.selected.plot}}</span>
   </div>
 </div>
 

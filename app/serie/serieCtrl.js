@@ -17,6 +17,7 @@
         ctrl.list = list;
         ctrl.getByTitleAndSeason = getByTitleAndSeason;
         ctrl.rowSelected = rowSelected;
+        ctrl.showSerieDetails = showSerieDetails;
 
         init();
 
@@ -29,6 +30,10 @@
 
         function closeMessage(index) {
             ctrl.alerts.splice(index);
+        }
+
+        function showSerieDetails() {
+            return ctrl.serie.selected.title !== undefined;
         }
 
         function list() {
