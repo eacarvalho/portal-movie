@@ -460,7 +460,6 @@
 .pointer { cursor: pointer; }
 
 .fullwidth { width: 100%; }
-.halfwidth { width: 50%; }
 .nolist { list-style: none;  }
 
 .text-shadow { text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); }

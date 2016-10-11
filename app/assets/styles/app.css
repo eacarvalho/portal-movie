@@ -48,7 +48,7 @@
 }
 
 body {
-    padding: 15px;
+    padding: 20px;
 }
 
 /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
