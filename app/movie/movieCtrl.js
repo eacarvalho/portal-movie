@@ -46,6 +46,7 @@
                         });
 
                         ctrl.movies = ctrl.moviesCombo;
+                        ctrl.movie.selected = ctrl.movie;
                     }
                 }).error(function (response, status) {
                     console.log('Request falhou ' + response + ', status code: ' + status);
