@@ -12,58 +12,90 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Memory Fish - Portal Movie by iWorks</title>
+  <title>Fish Memory</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <meta name="msapplication-TileColor" content="#9f00a7">
+  <meta name="msapplication-TileImage" content="assets/img/favicon/mstile-144x144.png">
+  <meta name="msapplication-config" content="assets/img/favicon/browserconfig.xml">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/theme/img/favicon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/theme/img/favicon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/theme/img/favicon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/theme/img/favicon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/theme/img/favicon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/theme/img/favicon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/theme/img/favicon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/theme/img/favicon/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/theme/img/favicon/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" href="assets/theme/img/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="assets/theme/img/favicon/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="assets/theme/img/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="assets/theme/img/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="assets/theme/img/favicon/manifest.json">
+  <link rel="shortcut icon" href="assets/theme/img/favicon/favicon.ico">
+
+  <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">-->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
   <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.min.css">
+  <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+  <link rel="stylesheet" href="bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="bower_components/roboto-fontface/css/roboto-fontface.css" />
 
-  <link rel="stylesheet" href="assets/styles/helpers.css">
   <link rel="stylesheet" href="assets/styles/app.css">
+  <link rel="stylesheet" href="assets/styles/helpers.css">
+  <link rel="stylesheet" href="assets/styles/jquery-ui.css">
 
+  <link href="assets/theme/styles/materialism.css" rel="stylesheet" />
+  <link href="assets/theme/styles/angular-ui-select.css" rel="stylesheet" />
+  <link href="assets/theme/styles/ripples.css" rel="stylesheet" />
 </head>
-<body>
 
-<div class="col-md-12">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Memory Fish</a>
-      </div>
+<body scroll-spy id="top" class=" theme-template-dark theme-pink alert-open alert-with-mat-grow-top-right">
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-responsive-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#/movie/list">Movie <span class="sr-only">(current)</span></a></li>
-          <li><a href="#/serie/list">Serie</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#/view1">view1</a></li>
-          <li><a href="#/view2">view2</a></li>
-        </ul>
-      </div>
+<main>
+  <!--<div ng-include src="'sidebar.html'"></div>-->
+  <div class="main-container">
+    <aside class="sidebar fixed" ng-cloak>
+      <div ng-include src="'sidebar.html'"></div>
+    </aside>
+    <div class="main-container">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header pull-left">
+            <button type="button" class="navbar-toggle pull-left m-15" data-activates=".sidebar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <ul class="breadcrumb">
+              <li><a href="/">Breadcrumb</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="main-content" autoscroll="true" ng-cloak ng-view bs-affix-target init-ripples></div>
     </div>
-  </nav>
-</div>
+  </div>
+</main>
 
-<div ng-view></div>
-
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-loader/angular-loader.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/velocity/velocity.js"></script>
+<script src="bower_components/velocity/velocity.ui.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/jquery-hammerjs/jquery.hammer.js"></script>
+<script src="bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
 
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
@@ -81,5 +113,22 @@
 
 <script src="commons/service/movieServ.js"></script>
 <script src="commons/service/serieServ.js"></script>
+
+<script src="assets/theme/js/ripples.js"></script>
+<script src="assets/theme/js/side-nav.js"></script>
+<script src="assets/theme/js/fsm-sticky-header.js"></script>
+<script src="assets/theme/js/angular-smooth-scroll.js"></script>
+
+<script src="commons/directives/theme/autofocus.js"></script>
+<script src="commons/directives/theme/card-flip.js"></script>
+<script src="commons/directives/theme/formcontrol.js"></script>
+<script src="commons/directives/theme/init-ripples.js"></script>
+<script src="commons/directives/theme/menu-link.js"></script>
+<script src="commons/directives/theme/menu-toggle.js"></script>
+<script src="commons/directives/theme/navbar-hover.js"></script>
+<script src="commons/directives/theme/navbar-toggle.js"></script>
+<script src="commons/directives/theme/noui-slider.js"></script>
+<script src="commons/directives/theme/scroll-spy.js"></script>
+
 </body>
 </html>

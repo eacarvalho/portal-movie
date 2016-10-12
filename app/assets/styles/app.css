@@ -1,4 +1,13 @@
+/* Customizacao do materialism.css */
+main .main-container .main-content {
+    padding-top: 40px !important;
+}
+/* Fim da Customizacao do materialism.css*/
+
 /* app css stylesheet */
+body {
+    padding: 20px;
+}
 
 .menu {
     list-style: none;
@@ -29,6 +38,13 @@
     padding: 0;
 }
 
+.table-striped > tbody > tr.st-selected:nth-child(odd) > td,
+.table-striped > tbody > tr.st-selected:nth-child(even) > td {
+    background-color: deeppink !important;
+    color: white !important;
+}
+
+
 .st-sort-ascent:before {
     content: '\25B2';
 }
@@ -39,16 +55,6 @@
 
 .st-selected {
     color: deeppink;
-}
-
-.table-striped > tbody > tr.st-selected:nth-child(odd) > td,
-.table-striped > tbody > tr.st-selected:nth-child(even) > td {
-    background-color: deeppink !important;
-    color: white !important;
-}
-
-body {
-    padding: 15px;
 }
 
 /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
