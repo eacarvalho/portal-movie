@@ -46,6 +46,7 @@
 
   <link rel="stylesheet" href="assets/styles/app.css">
   <link rel="stylesheet" href="assets/styles/helpers.css">
+  <link rel="stylesheet" href="assets/styles/jquery-ui.css">
 
   <link href="assets/theme/styles/materialism.css" rel="stylesheet" />
   <link href="assets/theme/styles/angular-ui-select.css" rel="stylesheet" />
@@ -55,23 +56,136 @@
 <body scroll-spy id="top" class=" theme-template-dark theme-pink alert-open alert-with-mat-grow-top-right">
 
 <main>
-  <div ng-include src="'sidebar.html'"></div>
+  <!--<div ng-include src="'sidebar.html'"></div>-->
   <div class="main-container">
-    <div ng-include src="'topnav.html'"></div>
-    <div class="main-content" autoscroll="true" ng-cloak ng-view bs-affix-target init-ripples></div>
+    <aside class="sidebar fixed" ng-cloak>
+      <div class="brand-logo">
+        <div id="logo">
+          <div class="foot1"></div>
+          <div class="foot2"></div>
+          <div class="foot3"></div>
+          <div class="foot4"></div>
+        </div>
+        Fish Memory
+      </div>
+      <div class="user-logged-in">
+        <div class="content">
+          <div class="user-name">Eduardo <span class="text-muted f9">admin</span></div>
+          <div class="user-email">eduardo@email.com</div>
+          <div class="user-actions"><a href="#">logout</a></div>
+        </div>
+      </div>
+      <ul class="menu-links">
+        <li icon="md md-blur-on"><a href="index.html"><i class="md md-blur-on"></i>&nbsp;<span>Dashboard</span></a></li>
+        <li><a href="#" data-toggle="collapse" data-target="#Movies" aria-expanded="false" aria-controls="Movies"
+               class="collapsible-header waves-effect"><i class="md md-camera"></i>&nbsp;Movies</a>
+          <ul id="Movies" class="collapse">
+            <li name="List">
+              <a href="#/movie/list"><span id="todosCount" class="pull-right badge z-depth-0">2</span><span>List of Movies</span></a>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#" data-toggle="collapse" data-target="#Series" aria-expanded="false" aria-controls="Series"
+               class="collapsible-header waves-effect"><i class="md md-photo"></i>&nbsp;Series</a>
+          <ul id="Series" class="collapse">
+            <li><a href="#/serie/list"><span>List of Series</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#" data-toggle="collapse" data-target="#General" aria-expanded="false" aria-controls="General"
+               class="collapsible-header waves-effect"><i class="md md-input"></i>&nbsp;General</a>
+          <ul id="General" class="collapse">
+            <li><a href="#/view1"><span>View 1</span></a></li>
+            <li><a href="#/view2"><span>View 2</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <div class="main-container">
+      <nav class="navbar navbar-default navbar-fixed-top" ng-class="{scroll: (scroll>10)}">
+        <div class="container-fluid">
+          <div class="navbar-header pull-left">
+            <button type="button" class="navbar-toggle pull-left m-15" data-activates=".sidebar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <yield to="breadcrumb"></yield>
+          </div>
+          <yield to="navbar-content"></yield>
+        </div>
+      </nav>
+      <button type="button" aside-menu-toggle="sol2" class="btn btn-default center-block">Left Menu (Backdrop)</button>
+      <div class="main-content" autoscroll="true" ng-cloak ng-view bs-affix-target init-ripples></div>
+    </div>
   </div>
 </main>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
 <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-loader/angular-loader.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/rangy/rangy-core.min.js"></script>
+<script src="bower_components/rangy/rangy-cssclassapplier.min.js"></script>
+<script src="bower_components/rangy/rangy-selectionsaverestore.min.js"></script>
+<script src="bower_components/rangy/rangy-serializer.min.js"></script>
+<script src="bower_components/velocity/velocity.js"></script>
+<script src="bower_components/velocity/velocity.ui.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/jquery-hammerjs/jquery.hammer.js"></script>
+<script src="bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/textAngular/src/textAngular.js"></script>
+<script src="bower_components/textAngular/src/textAngular-sanitize.js"></script>
+<script src="bower_components/textAngular/src/textAngularSetup.js"></script>
+<script src="bower_components/cpf_cnpj/build/cpf_cnpj.js"></script>
+<script src="bower_components/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="bower_components/angular-dragdrop/src/angular-dragdrop.js"></script>
+<script src="bower_components/matchmedia/matchMedia.js"></script>
+<script src="bower_components/ngSticky/lib/sticky.js"></script>
+<script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/jquery-resizable-columns/dist/jquery.resizableColumns.js"></script>
+<script src="bower_components/checklist-model/checklist-model.js"></script>
+<script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.date.extensions.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.numeric.extensions.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.phone.extensions.js"></script>
+<script src="bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.regex.extensions.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/ngDialog/js/ngDialog.js"></script>
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/jquery-maskmoney/dist/jquery.maskMoney.min.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+<script src="bower_components/angular-bootstrap-toggle-switch/angular-toggle-switch.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/c3/c3.js"></script>
+<script src="bower_components/c3-angular/c3-angular.min.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="bower_components/angular-feature-flags/dist/featureFlags.js"></script>
 
 <script src="app.js"></script>
 <script src="view1/view1.js"></script>
@@ -94,6 +208,20 @@
 <script src="assets/theme/js/side-nav.js"></script>
 <script src="assets/theme/js/fsm-sticky-header.js"></script>
 <script src="assets/theme/js/angular-smooth-scroll.js"></script>
+<script src="assets/theme/js/cloud-zoom.1.0.2.js"></script>
+<script src="assets/theme/js/ng-file-upload-file-api.js"></script>
+
+<script src="commons/directives/tema/autofocus.js"></script>
+<script src="commons/directives/tema/card-flip.js"></script>
+<script src="commons/directives/tema/formcontrol.js"></script>
+<script src="commons/directives/tema/init-ripples.js"></script>
+<script src="commons/directives/tema/menu-link.js"></script>
+<script src="commons/directives/tema/menu-toggle.js"></script>
+<script src="commons/directives/tema/navbar-hover.js"></script>
+<script src="commons/directives/tema/navbar-search.js"></script>
+<script src="commons/directives/tema/navbar-toggle.js"></script>
+<script src="commons/directives/tema/noui-slider.js"></script>
+<script src="commons/directives/tema/scroll-spy.js"></script>
 
 </body>
 </html>

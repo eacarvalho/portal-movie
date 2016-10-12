@@ -1,46 +1,4 @@
 (function ($) {
-    // left: 37, up: 38, right: 39, down: 40,
-    // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-    // var keys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
-
-    // function preventDefault(e) {
-    //   e = e || window.event;
-    //   if (e.preventDefault)
-    //     e.preventDefault();
-    //   e.returnValue = false;
-    // }
-
-    // function keydown(e) {
-    //   for (var i = keys.length; i--;) {
-    //     if (e.keyCode === keys[i]) {
-    //       preventDefault(e);
-    //       return;
-    //     }
-    //   }
-    // }
-
-    // function wheel(e) {
-    //   preventDefault(e);
-    // }
-
-    // function disable_scroll() {
-    //   if (window.addEventListener) {
-    //     window.addEventListener('DOMMouseScroll', wheel, false);
-    //   }
-    //   window.onmousewheel = document.onmousewheel = wheel;
-    //   document.onkeydown = keydown;
-    //   $('body').css({'overflow-y' : 'hidden'});
-    // }
-
-    // function enable_scroll() {
-    //   if (window.removeEventListener) {
-    //     window.removeEventListener('DOMMouseScroll', wheel, false);
-    //   }
-    //   window.onmousewheel = document.onmousewheel = document.onkeydown = null;
-    //   $('body').css({'overflow-y' : ''});
-
-    // }
-
   var methods = {
     init : function(options) {
       var defaults = {
@@ -48,6 +6,7 @@
         edge: 'left',
         closeOnClick: false
       };
+
       options = $.extend(defaults, options);
 
       $(this).each(function(){
@@ -76,19 +35,18 @@
 
         // If fixed sidenav, bring menu out
         if (menu_id.hasClass('fixed')) {
-            if ($(window).width() > 992) {
+            if ($(window).width() > 1280) {
               menu_id.css('left', 0);
             }
         }
 
-        if (window.innerWidth > 992) {
+        if (window.innerWidth > 1280) {
           menuOut = true;
         }
 
         // Window resize to reset on large screens fixed
         if (menu_id.hasClass('fixed')) {
           $(window).resize( function() {
-            if (window.innerWidth > 992) {
               // Close menu if window is resized bigger than 992 and user has fixed sidenav
               if ($('#sidenav-overlay').css('opacity') !== 0 && menuOut) {
                 removeMenu(true);
@@ -97,14 +55,6 @@
                 menu_id.removeAttr('style');
                 menu_id.css('width', options.menuWidth);
               }
-            }
-            else if (menuOut === false){
-              if (options.edge === 'left')
-                menu_id.css('left', -1 * (options.menuWidth + 10));
-              else
-                menu_id.css('right', -1 * (options.menuWidth + 10));
-            }
-
           });
         }
 
