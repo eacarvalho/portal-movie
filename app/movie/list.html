@@ -1,83 +1,88 @@
-<div class="row">
-  <div class="col-md-12" id="mensagens">
-    <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}" class="ns-alert"
-           close="ctrl.closeMessage($index)">
-      {{alert.msg}}
-    </alert>
-  </div>
-</div>
+<section class="lists white well">
 
-<div class="row m-t-30">
-  <div class="col-md-6">
-    <div class="page-header">
-      <h1><i class="md md-camera"></i>Lista de filmes</h1>
-      <p class="lead"> Manage your todo's from the dashboard or here with additional filters. </p>
+    <div class="row">
+        <div class="col-md-12" id="mensagens">
+            <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}" class="ns-alert"
+                   close="ctrl.closeMessage($index)">
+                {{alert.msg}}
+            </alert>
+        </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <ui-select ng-model="ctrl.movie.selected"
-               on-select="ctrl.getByCode($select.selected.code)"
-               theme="bootstrap">
-      <ui-select-match allow-clear="true" placeholder="Select or search a movie">
-        {{$select.selected.title}}
-      </ui-select-match>
-      <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
-        <span ng-bind-html="movie.title | highlight: $select.search"></span>
-      </ui-select-choices>
-    </ui-select>
-  </div>
-</div>
 
-<div class="row m-t-10">
-  <div class="col-md-9">
-    <div class="card">
-      <div class="table-responsive">
-        <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
-          <thead>
-          <tr>
-            <th st-sort="title">Title</th>
-            <th st-sort="originalTitle">Original Title</th>
-            <th st-sort="year">Year</th>
-            <th st-sort="rating">Rating</th>
-            <th>Duration</th>
-            <th st-sort="releasedDate">Released</th>
-            <th>imdbID</th>
-            <th>Imdb Rating</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
-            <td>{{ movie.title }}</td>
-            <td>{{ movie.originalTitle }}</td>
-            <td>{{ movie.year }}</td>
-            <td>{{ movie.rating }}</td>
-            <td>{{ movie.duration }}</td>
-            <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
-            <td>{{ movie.imdbID }}</td>
-            <td>{{ movie.imdbRating }}</td>
-          </tr>
-          </tbody>
-          <tfoot>
-          <tr>
-            <td colspan="8" class="text-center">
-              <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
-            </td>
-          </tr>
-          </tfoot>
-        </table>
-      </div>
-      <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="page-header">
+                <h1><i class="md md-camera"></i> List all movies</h1>
+
+                <p class="lead"> Manage your favorite movie</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ui-select ng-model="ctrl.movie.selected"
+                       on-select="ctrl.getByCode($select.selected.code)"
+                       theme="bootstrap">
+                <ui-select-match allow-clear="true" placeholder="Select or search a movie">
+                    {{$select.selected.title}}
+                </ui-select-match>
+                <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search track by movie.code">
+                    <span ng-bind-html="movie.title | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
     </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card" ng-show="ctrl.movie.selected.title !== undefined">
-      <div class="card-image">
-        <img ng-src="{{ctrl.movie.selected.poster}}">
-        <span class="card-title">{{ctrl.movie.selected.title}}</span>
-      </div>
-      <div class="card-content">
-        <p>{{ctrl.movie.selected.plot}}</p>
-      </div>
+
+    <div class="row m-t-10">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="table-responsive">
+                    <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th st-sort="title">Title</th>
+                            <th st-sort="originalTitle">Original Title</th>
+                            <th st-sort="year">Year</th>
+                            <th st-sort="rating">Rating</th>
+                            <th>Duration</th>
+                            <th st-sort="releasedDate">Released</th>
+                            <th>imdbID</th>
+                            <th>Imdb Rating</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.originalTitle }}</td>
+                            <td>{{ movie.year }}</td>
+                            <td>{{ movie.rating }}</td>
+                            <td>{{ movie.duration }}</td>
+                            <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
+                            <td>{{ movie.imdbID }}</td>
+                            <td>{{ movie.imdbRating }}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" ng-show="ctrl.movie.selected.title !== undefined">
+                <div class="card-image">
+                    <img ng-src="{{ctrl.movie.selected.poster}}">
+                    <span class="card-title">{{ctrl.movie.selected.title}}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ctrl.movie.selected.plot}}</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+
+</section>
