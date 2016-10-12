@@ -12,7 +12,7 @@
           icon: '@',
           name: '@'
         },
-        templateUrl: 'commons/directives/tema/tpl/menu-link.html',
+        templateUrl: 'commons/directives/theme/tpl/menu-link.html',
         controller: ['$element', '$location', '$rootScope', function($element, $location, $rootScope) {
           this.getName = function(name) {
             if ( name !== undefined ) {

@@ -11,7 +11,7 @@
           name: '@',
           icon: '@'
         },
-        templateUrl: 'commons/directives/tema/tpl/menu-toggle.html',
+        templateUrl: 'commons/directives/theme/tpl/menu-toggle.html',
         link: function(scope, element, attrs) {
           var icon = attrs.icon;
           if ( icon ) {
