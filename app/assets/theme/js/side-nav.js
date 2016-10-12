@@ -2,7 +2,7 @@
   var methods = {
     init : function(options) {
       var defaults = {
-        menuWidth: 250,
+        menuWidth: 260,
         edge: 'left',
         closeOnClick: false
       };
@@ -15,7 +15,7 @@
 
 
         // Set to width
-        if (options.menuWidth != 250) {
+        if (options.menuWidth != 260) {
           menu_id.css('width', options.menuWidth);
         }
 
@@ -23,7 +23,8 @@
         $('body').append($('<div class="drag-target"></div>'));
 
         if (options.edge == 'left') {
-          menu_id.css('left', -1 * (options.menuWidth + 10));
+          // menu_id.css('left', -1 * (options.menuWidth + 10));
+          // Comentado a linha acima para funcionar responsible em qualquer tamanho
           $('.drag-target').css({'left': 0}); // Add Touch Area
         }
         else {
