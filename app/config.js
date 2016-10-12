@@ -1,1 +1,1 @@
-angular.module('config', []).constant('ENV', {movieApi: 'http://api.movie.iworks.com.br'});
+angular.module('config', []).constant('ENV', {movieApi: 'http://localhost:8080'});
