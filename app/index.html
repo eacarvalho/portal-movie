@@ -62,26 +62,24 @@
       <div ng-include src="'sidebar.html'"></div>
     </aside>
     <div class="main-container">
-      <nav class="navbar navbar-default navbar-fixed-top" >
+      <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-          <div class="navbar-header pull-left">
+          <div class="navbar-header pull-left col-md-1">
             <button type="button" class="navbar-toggle pull-left m-15" data-activates=".sidebar">
               <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <ul class="breadcrumb">
-              <li><a href="/">Home</a></li>
+            <yield to="breadcrumb"></yield>
+          </div>
+          <div class="pull-right col-md-11">
+            <ul class="nav navbar-nav navbar-right navbar-right-no-collapse">
+              <li class="dropdown pull-right">
+                <button class="navbar-toggle pointer btn btn-round-sm btn-link withoutripple" data-activates=".sidebar" style="margin-top: -1px !important; margin-right: 0px !important; margin-bottom: 0px !important;"> <i class="md md-more-vert f20"></i> </button>
+              </li>
+              <yield to="navbar-content"></yield>
             </ul>
           </div>
-          <ul class="nav navbar-nav navbar-right navbar-right-no-collapse">
-            <li class="dropdown pull-right">
-              <button class="navbar-toggle pointer btn btn-round-sm btn-link withoutripple" data-activates=".sidebar" style="margin-top: -1px !important;"> <i class="md md-more-vert f20"></i> </button>
-            </li>
-            <li class="dropdown pull-right">
-              <button class="dropdown-toggle pointer btn btn-round-sm btn-link withoutripple"> <i class="md md-settings f20"></i> </button>
-            </li>
-          </ul>
         </div>
       </nav>
       <div class="main-content" autoscroll="true" ng-cloak ng-view bs-affix-target init-ripples></div>
@@ -128,6 +126,8 @@
 <script src="assets/theme/js/side-nav.js"></script>
 <script src="assets/theme/js/fsm-sticky-header.js"></script>
 <script src="assets/theme/js/angular-smooth-scroll.js"></script>
+
+<script src="commons/directives/contentFor/contentFor.js"></script>
 
 <script src="commons/directives/theme/autofocus.js"></script>
 <script src="commons/directives/theme/card-flip.js"></script>

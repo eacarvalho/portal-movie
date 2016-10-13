@@ -10,12 +10,13 @@
     var ctrl = this;
     ctrl.alerts = [];
 
-    ctrl.moviesCombo = [];
     ctrl.movies = [];
     ctrl.movie = {};
     ctrl.movie.selected = {};
+    ctrl.movieTitle = '';
 
     ctrl.list = list;
+    ctrl.listByTitle = listByTitle;
     ctrl.getByCode = getByCode;
     ctrl.rowSelected = rowSelected;
 
@@ -37,16 +38,14 @@
         .success(function (response, status) {
           if (response) {
             ctrl.totalItems = response.totalElements;
-            ctrl.moviesCombo = [];
+            ctrl.movies = [];
             ctrl.movie.selected = {};
 
             angular.forEach(response.content, function (movie) {
               setMovie(movie);
-              ctrl.moviesCombo.push(ctrl.movie);
+              ctrl.movies.push(ctrl.movie);
+              ctrl.movie.selected = ctrl.movies[0];
             });
-
-            ctrl.movies = ctrl.moviesCombo;
-            ctrl.movie.selected = ctrl.movie;
           }
         }).error(function (response, status) {
           console.log('Request falhou ' + response + ', status code: ' + status);
@@ -66,6 +65,29 @@
 
               setMovie(response);
               ctrl.movies.push(ctrl.movie);
+              ctrl.movie.selected = ctrl.movie;
+            }
+          }).error(function (response, status) {
+            console.log('Request falhou ' + response + ', status code: ' + status);
+          });
+      }
+    }
+
+    function listByTitle(title) {
+      if (title === undefined || title === '') {
+        list();
+      } else {
+        MovieService.listByTitle(title)
+          .success(function (response, status) {
+            if (response) {
+              ctrl.totalItems = 1;
+              ctrl.movies = [];
+
+              angular.forEach(response.content, function (movie) {
+                setMovie(movie);
+                ctrl.movies.push(ctrl.movie);
+              });
+
               ctrl.movie.selected = ctrl.movie;
             }
           }).error(function (response, status) {
