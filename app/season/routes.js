@@ -6,7 +6,7 @@ angular.module('portalMovie.season',['ngRoute',
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/season/list', {
             templateUrl: 'season/list.html',
-            controller: 'SerieCtrl',
+            controller: 'SeasonCtrl',
             controllerAs: 'ctrl'
         });
     }]);
