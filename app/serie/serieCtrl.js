@@ -33,7 +33,7 @@
         }
 
         function showSerieDetails() {
-            return ctrl.serie.selected.title !== undefined;
+            return ctrl.serie.selected && ctrl.serie.selected.title !== undefined;
         }
 
         function list() {
