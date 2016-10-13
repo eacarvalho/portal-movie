@@ -10,7 +10,7 @@
         var size = 1000;
 
         service.list = function () {
-            return $http.get('/movies?size=' + size);
+            return $http.get('/movies?type=Movie&size=' + size);
         };
 
         service.listByTitle = function (title) {

@@ -4,18 +4,7 @@
   </ul>
 </content-for>
 
-<content-for for="navbar-content">
-  <li class="pull-right">
-    <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"><i
-        class="md md-search f20"></i></button>
-    <form class="search-form form-inline pull-left" ng-submit="ctrl.listByTitle(ctrl.movieTitle)">
-      <div class="form-group">
-        <label class="sr-only" for="search-input">Search</label>
-        <input type="text" ng-model="ctrl.movieTitle" class="form-control" id="search-input" placeholder="Search"
-               autofocus=""></div>
-    </form>
-  </li>
-</content-for>
+<content-for for="navbar-content"></content-for>
 
 <section class="lists white well">
 
@@ -29,13 +18,24 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="page-header">
         <h1><i class="md md-camera"></i> List all movies</h1>
 
         <p class="lead"> Manage your favorite movie</p>
       </div>
     </div>
+    <div class="col-md-6">
+      <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"><i
+          class="md md-search f20"></i></button>
+      <form class="search-form form-inline pull-left" ng-submit="ctrl.listByTitle(ctrl.movieTitle)">
+        <div class="form-group">
+          <label class="sr-only" for="search-input">Search</label>
+          <input type="text" ng-model="ctrl.movieTitle" class="form-control" id="search-input" placeholder="Search"
+                 autofocus=""></div>
+      </form>
+    </div>
+  </div>
   </div>
 
   <div class="row m-t-10">

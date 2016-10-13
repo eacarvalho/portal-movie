@@ -44,6 +44,7 @@
             angular.forEach(response.content, function (movie) {
               setMovie(movie);
               ctrl.movies.push(ctrl.movie);
+              ctrl.movie.selected = ctrl.movies[0];
             });
           }
         }).error(function (response, status) {
