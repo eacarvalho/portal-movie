@@ -15,7 +15,7 @@
     ctrl.movie.selected = {};
     ctrl.movieTitle = '';
 
-    ctrl.list = list;
+    ctrl.listMovie = listMovie;
     ctrl.listByTitle = listByTitle;
     ctrl.getByCode = getByCode;
     ctrl.rowSelected = rowSelected;
@@ -33,8 +33,8 @@
       ctrl.alerts.splice(index);
     }
 
-    function list() {
-      MovieService.list()
+    function listMovie() {
+      MovieService.listMovie()
         .success(function (response, status) {
           if (response) {
             ctrl.totalItems = response.totalElements;
@@ -54,7 +54,7 @@
 
     function getByCode(code) {
       if (code === undefined) {
-        list();
+        listMovie();
       } else {
         MovieService.getByCode(code)
           .success(function (response, status) {
@@ -124,7 +124,7 @@
     }
 
     function init() {
-      list();
+      listMovie();
     }
   }
 })();

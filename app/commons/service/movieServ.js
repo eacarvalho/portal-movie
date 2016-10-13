@@ -9,8 +9,12 @@
         var $http = Api.movie;
         var size = 1000;
 
-        service.list = function () {
+        service.listMovie = function () {
             return $http.get('/movies?type=Movie&size=' + size);
+        };
+
+        service.listSerie = function () {
+            return $http.get('/movies?type=Serie&size=' + size);
         };
 
         service.listByTitle = function (title) {
@@ -22,9 +26,10 @@
         };
 
         return {
-            list : service.list,
+            listMovie : service.listMovie,
             listByTitle : service.listByTitle,
-            getByCode : service.getByCode
+            getByCode : service.getByCode,
+            listSerie : service.listSerie
         };
     }
 })();
