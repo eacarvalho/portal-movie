@@ -98,7 +98,7 @@
 
     function rowSelected(row) {
       if (row === undefined) {
-        list();
+        listMovie();
       } else {
         ctrl.movie.selected = row;
       }
