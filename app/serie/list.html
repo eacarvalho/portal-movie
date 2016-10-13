@@ -26,14 +26,16 @@
       </div>
     </div>
     <div class="col-md-6">
-      <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"><i
-          class="md md-search f20"></i></button>
-      <form class="search-form form-inline pull-left" ng-submit="ctrl.listByTitle(ctrl.movieTitle)">
-        <div class="form-group">
-          <label class="sr-only" for="search-input">Search</label>
-          <input type="text" ng-model="ctrl.movieTitle" class="form-control" id="search-input" placeholder="Search"
-                 autofocus=""></div>
-      </form>
+      <ui-select ng-model="ctrl.movie.selected"
+                 on-select="ctrl.getByCode($select.selected.code, $select.selected.season)"
+                 theme="bootstrap">
+        <ui-select-match allow-clear="true" placeholder="Select or search...">
+          {{$select.selected.title}} {{$select.selected.season}}
+        </ui-select-match>
+        <ui-select-choices repeat="movie in ctrl.moviesCombo | filter: $select.search">
+          <span ng-bind-html="movie.title | highlight: $select.search"></span>
+        </ui-select-choices>
+      </ui-select>
     </div>
   </div>
 

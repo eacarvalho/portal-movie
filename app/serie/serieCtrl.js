@@ -10,15 +10,14 @@
     var ctrl = this;
     ctrl.alerts = [];
 
+    ctrl.moviesCombo = [];
     ctrl.movies = [];
     ctrl.movie = {};
     ctrl.movie.selected = {};
-    ctrl.movieTitle = '';
 
     ctrl.listSerie = listSerie;
     ctrl.listByTitle = listByTitle;
     ctrl.getByCode = getByCode;
-    ctrl.rowSelected = rowSelected;
 
     init();
 
@@ -38,14 +37,16 @@
         .success(function (response, status) {
           if (response) {
             ctrl.totalItems = response.totalElements;
+            ctrl.moviesCombo = [];
             ctrl.movies = [];
             ctrl.movie.selected = {};
 
             angular.forEach(response.content, function (movie) {
               setMovie(movie);
               ctrl.movies.push(ctrl.movie);
-              ctrl.movie.selected = ctrl.movies[0];
             });
+
+            ctrl.moviesCombo = ctrl.movies;
           }
         }).error(function (response, status) {
           console.log('Request falhou ' + response + ', status code: ' + status);
@@ -93,14 +94,6 @@
           }).error(function (response, status) {
             console.log('Request falhou ' + response + ', status code: ' + status);
           });
-      }
-    }
-
-    function rowSelected(row) {
-      if (row === undefined) {
-        listSerie();
-      } else {
-        ctrl.movie.selected = row;
       }
     }
 

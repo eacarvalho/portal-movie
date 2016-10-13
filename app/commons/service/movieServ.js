@@ -10,11 +10,11 @@
         var size = 1000;
 
         service.listMovie = function () {
-            return $http.get('/movies?type=Movie&size=' + size);
+            return $http.get('/movies?type=Movie&sort=title&size=' + size);
         };
 
         service.listSerie = function () {
-            return $http.get('/movies?type=Serie&size=' + size);
+            return $http.get('/movies?type=Serie&sort=title&size=' + size);
         };
 
         service.listByTitle = function (title) {
