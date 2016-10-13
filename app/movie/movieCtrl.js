@@ -75,7 +75,7 @@
 
     function listByTitle(title) {
       if (title === undefined || title === '') {
-        list();
+        listMovie();
       } else {
         MovieService.listByTitle(title)
           .success(function (response, status) {
