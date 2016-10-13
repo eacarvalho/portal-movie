@@ -7,9 +7,6 @@
 <content-for for="navbar-content">
   <li class="pull-right">
     <div>
-      <div class="pull-right">
-        <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"> <i class="md md-search f20"></i> </button>
-      </div>
       <div class="mat-slide-right pull-right">
         <form class="search-form form-inline pull-left" ng-submit="ctrl.listByTitle(ctrl.movieTitle)">
           <div class="form-group">
@@ -17,7 +14,9 @@
             <input type="text" ng-model="ctrl.movieTitle" class="form-control" id="search-input" placeholder="Search" autofocus=""> </div>
         </form>
       </div>
-
+      <div class="pull-right">
+        <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"> <i class="md md-search f20"></i> </button>
+      </div>
     </div>
   </li>
 </content-for>
