@@ -8,6 +8,7 @@
             'config',
             'portalMovie.movie',
             'portalMovie.serie',
+            'portalMovie.season',
             'portalMovie.view1',
             'portalMovie.view2'])
 })();
