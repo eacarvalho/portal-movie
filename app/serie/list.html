@@ -22,54 +22,71 @@
       <div class="page-header">
         <h1><i class="md md-camera"></i> List all series</h1>
 
-        <p class="lead"><span ng-if="ctrl.showSerieDetails()"><b>{{ctrl.serie.selected.title}}</b> - Season {{ctrl.serie.selected.season}} of {{ctrl.serie.selected.totalSeasons}}</span>
-        </p>
+        <p class="lead"> Manage your favorite serie</p>
       </div>
     </div>
     <div class="col-md-6">
-      <ui-select ng-model="ctrl.serie.selected"
-                 on-select="ctrl.getByTitleAndSeason($select.selected.title, $select.selected.season)"
-                 theme="bootstrap">
-        <ui-select-match allow-clear="true" placeholder="Select or search...">
-          {{$select.selected.title}} {{$select.selected.season}}
-        </ui-select-match>
-        <ui-select-choices repeat="serie in ctrl.seriesCombo | filter: $select.search">
-          <span ng-bind-html="serie.title | highlight: $select.search"></span>
-          <small ng-bind-html="serie.season | highlight: $select.search"></small>
-        </ui-select-choices>
-      </ui-select>
+      <button class="btn btn-sm btn-link pull-left withoutripple" ng-click="ctrl.listByTitle(ctrl.movieTitle)"><i
+          class="md md-search f20"></i></button>
+      <form class="search-form form-inline pull-left" ng-submit="ctrl.listByTitle(ctrl.movieTitle)">
+        <div class="form-group">
+          <label class="sr-only" for="search-input">Search</label>
+          <input type="text" ng-model="ctrl.movieTitle" class="form-control" id="search-input" placeholder="Search"
+                 autofocus=""></div>
+      </form>
     </div>
+  </div>
   </div>
 
   <div class="row m-t-10">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <div class="card">
         <div class="table-responsive">
-          <table st-table="result" st-safe-src="ctrl.serie.episodes" class="table table-striped">
+          <table st-table="result" st-safe-src="ctrl.movies" class="table table-striped">
             <thead>
             <tr>
-              <th st-sort="number">#</th>
               <th st-sort="title">Title</th>
-              <th st-sort="released">Released</th>
+              <th st-sort="originalTitle">Original Title</th>
+              <th st-sort="year">Year</th>
               <th st-sort="rating">Rating</th>
+              <th>Duration</th>
+              <th st-sort="releasedDate">Released</th>
+              <th>imdbID</th>
               <th st-sort="imdbRating">Imdb Rating</th>
-              <th>Imdb</th>
-              <th st-sort="watched">Watched</th>
-
             </tr>
             </thead>
             <tbody>
-            <tr st-select-row="episode" ng-click="ctrl.rowSelected(episode)" ng-repeat="episode in result">
-              <td>{{ episode.number }}</td>
-              <td>{{ episode.title }}</td>
-              <td>{{ episode.released | date:'dd/MM/yyyy'}}</td>
-              <td>{{ episode.rating }}</td>
-              <td>{{ episode.imdbRating }}</td>
-              <td>{{ episode.imdbID }}</td>
-              <td>{{ episode.watched }}</td>
+            <tr st-select-row="movie" ng-click="ctrl.rowSelected(movie)" ng-repeat="movie in result">
+              <td>{{ movie.title }}</td>
+              <td>{{ movie.originalTitle }}</td>
+              <td>{{ movie.year }}</td>
+              <td>{{ movie.rating }}</td>
+              <td>{{ movie.duration }}</td>
+              <td>{{ movie.releasedDate | date:'dd/MM/yyyy'}}</td>
+              <td>{{ movie.imdbID }}</td>
+              <td>{{ movie.imdbRating }}</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="8" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-displayed-pages="10"></div>
+              </td>
+            </tr>
+            </tfoot>
           </table>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card" ng-show="ctrl.movie.selected.title !== undefined">
+        <div class="card-image">
+          <img ng-src="{{ctrl.movie.selected.poster}}">
+          <span class="card-title">{{ctrl.movie.selected.title}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{ctrl.movie.selected.plot}}</p>
         </div>
       </div>
     </div>

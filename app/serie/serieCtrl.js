@@ -1,92 +1,130 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('portalMovie.serie')
-        .controller('SerieCtrl', ['$scope', '$http', 'Factory', 'SerieService', SerieCtrl]);
+  angular
+    .module('portalMovie.serie')
+    .controller('SerieCtrl', ['$scope', '$http', 'Factory', 'MovieService', SerieCtrl]);
 
-    function SerieCtrl($scope, $http, Factory, SerieService) {
+  function SerieCtrl($scope, $http, Factory, MovieService) {
 
-        var ctrl = this;
-        ctrl.alerts = [];
+    var ctrl = this;
+    ctrl.alerts = [];
 
-        ctrl.seriesCombo = [];
-        ctrl.serie = {};
-        ctrl.serie.selected = {};
+    ctrl.movies = [];
+    ctrl.movie = {};
+    ctrl.movie.selected = {};
+    ctrl.movieTitle = '';
 
-        ctrl.list = list;
-        ctrl.getByTitleAndSeason = getByTitleAndSeason;
-        ctrl.rowSelected = rowSelected;
-        ctrl.showSerieDetails = showSerieDetails;
+    ctrl.listSerie = listSerie;
+    ctrl.listByTitle = listByTitle;
+    ctrl.getByCode = getByCode;
+    ctrl.rowSelected = rowSelected;
 
-        init();
+    init();
 
-        var message = function (msg, typeAlert) {
-            ctrl.alerts.push({type: typeAlert, msg: msg});
-            if (typeAlert === 'danger') {
-                Utils.scrollToTop();
-            }
-        };
+    var message = function (msg, typeAlert) {
+      ctrl.alerts.push({type: typeAlert, msg: msg});
+      if (typeAlert === 'danger') {
+        Utils.scrollToTop();
+      }
+    };
 
-        function closeMessage(index) {
-            ctrl.alerts.splice(index);
-        }
-
-        function showSerieDetails() {
-            return ctrl.serie.selected && ctrl.serie.selected.title !== undefined;
-        }
-
-        function list() {
-            SerieService.list()
-                .success(function (response, status) {
-                    if (response) {
-                        ctrl.totalItems = response.totalElements;
-                        ctrl.seriesCombo = [];
-                        ctrl.serie.selected = {};
-
-                        angular.forEach(response.content, function (serie) {
-                            setSerie(serie);
-                            ctrl.seriesCombo.push(ctrl.serie);
-                        });
-                    }
-                }).error(function (response, status) {
-                    console.log('Request falhou ' + response + ', status code: ' + status);
-                });
-        }
-
-        function getByTitleAndSeason(title, season) {
-            SerieService.getByTitleAndSeason(title, season)
-                .success(function (response, status) {
-                    if (response) {
-                        ctrl.totalItems = 1;
-                        ctrl.serie.selected = {};
-
-                        setSerie(response);
-                        ctrl.serie.selected = ctrl.serie;
-                    }
-                }).error(function (response, status) {
-                    console.log('Request falhou ' + response + ', status code: ' + status);
-                });
-        }
-
-        function rowSelected(row) {
-            console.log(ctrl.serie);
-            console.log(row);
-        }
-
-        function setSerie(serie) {
-            ctrl.serie = {
-                title: serie.title,
-                season: serie.season,
-                totalSeasons: serie.totalSeasons,
-                rating: serie.rating,
-                episodes: serie.episodes
-            };
-        }
-
-        function init() {
-            ctrl.serie.selected = {};
-            list();
-        }
+    function closeMessage(index) {
+      ctrl.alerts.splice(index);
     }
+
+    function listSerie() {
+      MovieService.listSerie()
+        .success(function (response, status) {
+          if (response) {
+            ctrl.totalItems = response.totalElements;
+            ctrl.movies = [];
+            ctrl.movie.selected = {};
+
+            angular.forEach(response.content, function (movie) {
+              setMovie(movie);
+              ctrl.movies.push(ctrl.movie);
+              ctrl.movie.selected = ctrl.movies[0];
+            });
+          }
+        }).error(function (response, status) {
+          console.log('Request falhou ' + response + ', status code: ' + status);
+        });
+    }
+
+    function getByCode(code) {
+      if (code === undefined) {
+        listSerie();
+      } else {
+        MovieService.getByCode(code)
+          .success(function (response, status) {
+            if (response) {
+              ctrl.totalItems = 1;
+              ctrl.movies = [];
+              ctrl.movie.selected = {};
+
+              setMovie(response);
+              ctrl.movies.push(ctrl.movie);
+              ctrl.movie.selected = ctrl.movie;
+            }
+          }).error(function (response, status) {
+            console.log('Request falhou ' + response + ', status code: ' + status);
+          });
+      }
+    }
+
+    function listByTitle(title) {
+      if (title === undefined || title === '') {
+        listSerie();
+      } else {
+        MovieService.listByTitle(title)
+          .success(function (response, status) {
+            if (response) {
+              ctrl.totalItems = 1;
+              ctrl.movies = [];
+
+              angular.forEach(response.content, function (movie) {
+                setMovie(movie);
+                ctrl.movies.push(ctrl.movie);
+              });
+
+              ctrl.movie.selected = ctrl.movie;
+            }
+          }).error(function (response, status) {
+            console.log('Request falhou ' + response + ', status code: ' + status);
+          });
+      }
+    }
+
+    function rowSelected(row) {
+      if (row === undefined) {
+        listSerie();
+      } else {
+        ctrl.movie.selected = row;
+      }
+    }
+
+    function setMovie(movie) {
+      ctrl.movie = {
+        code: movie.code,
+        title: movie.title,
+        originalTitle: movie.originalTitle,
+        duration: movie.duration,
+        type: movie.type,
+        genres: movie.genres,
+        releasedDate: movie.releasedDate,
+        year: movie.year,
+        plot: movie.plot,
+        director: movie.director,
+        rating: movie.rating,
+        imdbRating: movie.imdbRating,
+        imdbID: movie.imdbID,
+        poster: movie.poster
+      };
+    }
+
+    function init() {
+      listSerie();
+    }
+  }
 })();
