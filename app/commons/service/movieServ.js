@@ -14,7 +14,7 @@
         };
 
         service.listSerie = function () {
-            return $http.get('/movies?type=Serie&sort=title&size=' + size);
+            return $http.get('/movies?type=Series&sort=title&size=' + size);
         };
 
         service.listByTitle = function (title) {
