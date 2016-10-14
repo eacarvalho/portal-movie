@@ -21,6 +21,10 @@
       return $http.get('/movies?title=' + title);
     };
 
+    service.listByOriginalTitle = function (originalTitle) {
+      return $http.get('/movies?originalTitle=' + originalTitle);
+    };
+
     service.getByCode = function (code) {
       return $http.get('/movies/' + code);
     };
@@ -35,6 +39,7 @@
     return {
       listMovie: service.listMovie,
       listByTitle: service.listByTitle,
+      listByOriginalTitle: service.listByOriginalTitle,
       getByCode: service.getByCode,
       listSerie: service.listSerie,
       save: service.save
