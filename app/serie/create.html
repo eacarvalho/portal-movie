@@ -1,0 +1,56 @@
+<content-for for="breadcrumb">
+  <ul class="breadcrumb">
+    <li class="active"><a href="#/">Home</a> / <a href="#/serie/list">Create a new Serie</a></li>
+  </ul>
+</content-for>
+
+<content-for for="navbar-content"></content-for>
+
+<section class="lists white well">
+
+  <div class="row">
+    <div class="col-md-12" id="mensagens">
+      <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}"
+             close="ctrl.closeMessage($index)">
+        {{alert.msg}}
+      </alert>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1><i class="md md-camera"></i> Create a new Serie</h1>
+
+        <p class="lead"> Manage your favorite serie</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-t-10">
+    <div class="col-md-12">
+      <div class="well white">
+        <form class="form-floating ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.newMovie)">
+          <fieldset>
+            <span class="help-block">Please fill out the following form below.</span>
+
+            <div class="form-group">
+              <label for="inputTitle" class="control-label">Title</label>
+              <input type="text" id="inputTitle" class="form-control" ng-model="ctrl.newMovie.title">
+            </div>
+            <div class="form-group">
+              <label for="inputOriginalTitle" class="control-label">Original Title</label>
+              <input type="text" id="inputOriginalTitle" class="form-control" ng-model="ctrl.newMovie.originalTitle">
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-default">Cancel</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>

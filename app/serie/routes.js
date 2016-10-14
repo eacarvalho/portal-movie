@@ -8,5 +8,9 @@ angular.module('portalMovie.serie',['ngRoute',
             templateUrl: 'serie/list.html',
             controller: 'SerieCtrl',
             controllerAs: 'ctrl'
+        }).when('/serie/create', {
+            templateUrl: 'serie/create.html',
+            controller: 'SerieCtrl',
+            controllerAs: 'ctrl'
         });
     }]);

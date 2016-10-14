@@ -14,10 +14,12 @@
     ctrl.movies = [];
     ctrl.movie = {};
     ctrl.movie.selected = {};
+    ctrl.newMovie = {};
 
     ctrl.listSerie = listSerie;
     ctrl.listByTitle = listByTitle;
     ctrl.getByCode = getByCode;
+    ctrl.save = save;
 
     init();
 
@@ -94,6 +96,27 @@
           }).error(function (response, status) {
             console.log('Request falhou ' + response + ', status code: ' + status);
           });
+      }
+    }
+
+    function save(movie) {
+      if (movie !== undefined) {
+        MovieService.save(movie)
+          .success(function (response) {
+            if (response) {
+              message('Serie saved with success', 'info');
+            }
+          }).error(function (response, status) {
+            console.log('Request falhou ' + response + ', status code: ' + status);
+
+            if (status === 409) {
+              message('Serie has already registered', 'warning');
+            } else {
+              message('Error saving serie: ' + response, 'danger');
+            }
+          });
+      } else {
+        message('Serie cannot be null', 'danger');
       }
     }
 
