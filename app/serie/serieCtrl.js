@@ -176,8 +176,6 @@
             console.log('Request falhou ' + response + ', status code: ' + status);
             message('Not found any serie with the given title', 'warning');
           });
-      } else {
-        message('Original title is required', 'warning');
       }
     }
 
