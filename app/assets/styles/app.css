@@ -6,6 +6,11 @@ main .main-container .main-content {
 .page-header {
     margin: 0 0 10px 0 !important;
 }
+
+.close {
+    font-size: 16px !important;
+    line-height: 0px !important;
+}
 /* Fim da Customizacao do materialism.css*/
 
 /* app css stylesheet */

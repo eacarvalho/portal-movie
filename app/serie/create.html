@@ -6,15 +6,17 @@
 
 <content-for for="navbar-content"></content-for>
 
-<section class="lists white well">
+<section class="lists">
 
-  <div class="row">
-    <div class="col-md-12" id="mensagens">
-      <alert ng-repeat="alert in ctrl.alerts" type="{{alert.type}}"
-             close="ctrl.closeMessage($index)">
-        {{alert.msg}}
-      </alert>
-    </div>
+  <div class="bs-component">
+    <alert ng-repeat="alert in ctrl.alerts" close="ctrl.closeMessage($index)">
+      <div class="alert alert-dismissible alert-{{alert.type}}" id="mensagens">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <h4>{{alert.type}}</h4>
+
+        <p>{{alert.msg}}.</p>
+      </div>
+    </alert>
   </div>
 
   <div class="row">
@@ -28,29 +30,87 @@
   </div>
 
   <div class="row m-t-10">
+
     <div class="col-md-12">
       <div class="well white">
-        <form class="form-floating ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.newMovie)">
+        <form class="form-inline ng-pristine ng-valid ng-submitted" style="" ng-submit="ctrl.save(ctrl.newMovie)">
           <fieldset>
-            <span class="help-block">Please fill out the following form below.</span>
+            <legend>Saving a serie by IMDB</legend>
+            <br>
 
-            <div class="form-group">
-              <label for="inputTitle" class="control-label">Title</label>
-              <input type="text" id="inputTitle" class="form-control" ng-model="ctrl.newMovie.title">
-            </div>
-            <div class="form-group">
-              <label for="inputOriginalTitle" class="control-label">Original Title</label>
-              <input type="text" id="inputOriginalTitle" class="form-control" ng-model="ctrl.newMovie.originalTitle">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="sr-only" for="inputOriginalTitleByImdb">Original Title</label>
+                <input type="text" ng-model="ctrl.newMovie.originalTitle" class="form-control" id="inputOriginalTitleByImdb"
+                       placeholder="Enter original title">
+              </div>
             </div>
 
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Submit</button>
-              <button type="reset" class="btn btn-default">Cancel</button>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="sr-only" for="imdbByImdb">IMDB</label>
+                <input type="text" ng-model="ctrl.newMovie.imdbID" class="form-control" id="imdbByImdb"
+                       placeholder="Enter imdb id">
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="sr-only" for="yearByImdb">Year</label>
+                <input type="text" ng-model="ctrl.newMovie.year" class="form-control" id="yearByImdb"
+                       placeholder="Enter year">
+              </div>
+            </div>
+
+            <div class="col-md-6 pull-left">
+              <button type="submit" class="btn btn-primary">Search <i class="md md-send"></i>
+                <div class="ripple-wrapper"></div>
+              </button>
             </div>
           </fieldset>
         </form>
       </div>
     </div>
-  </div>
+
+    <div class="col-md-12" ng-show="ctrl.showCard">
+      <div class="card col-md-2">
+        <div class="card-image">
+          <img ng-src="{{ctrl.newMovie.poster}}">
+          <span class="card-title">{{ctrl.newMovie.title}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{ctrl.newMovie.plot}}</p>
+        </div>
+        <div class="card-action clearfix">
+          <a href="" class="btn btn-link btn-icon"><i class="md md-favorite red-text"></i>{{ctrl.newMovie.rating}}</a>
+          <a href="" class="btn btn-link btn-icon"><i class="md md-refresh black-text"></i>{{ctrl.newMovie.imdbRating}}</a>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="col-md-12">-->
+      <!--<div class="well white">-->
+        <!--<form class="form-floating ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.newMovie)">-->
+          <!--<fieldset>-->
+            <!--<span class="help-block">Please fill out the following form below.</span>-->
+
+            <!--<div class="form-group">-->
+              <!--<label for="inputTitle" class="control-label">Title</label>-->
+              <!--<input type="text" id="inputTitle" class="form-control" ng-model="ctrl.newMovie.title">-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+              <!--<label for="inputOriginalTitle" class="control-label">Original Title</label>-->
+              <!--<input type="text" id="inputOriginalTitle" class="form-control" ng-model="ctrl.newMovie.originalTitle">-->
+            <!--</div>-->
+
+            <!--<div class="form-group">-->
+              <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+              <!--<button type="reset" class="btn btn-default">Cancel</button>-->
+            <!--</div>-->
+          <!--</fieldset>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 </section>
