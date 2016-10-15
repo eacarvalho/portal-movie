@@ -42,16 +42,21 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label class="sr-only" for="inputOriginalTitleByImdb">Original Title</label>
-                <input type="text" ng-model="ctrl.movie.originalTitle" class="form-control" id="inputOriginalTitleByImdb"
+                <input type="text" ng-model="ctrl.movie.originalTitle" class="form-control"
+                       id="inputOriginalTitleByImdb"
                        placeholder="Enter original title" required>
               </div>
             </div>
 
             <div class="col-md-10 pull-left">
-              <button type="submit" ng-click="ctrl.listByOmdb(ctrl.movie.originalTitle)" ng-show="!ctrl.showCard" class="btn btn-primary">Search <i class="md md-send"></i>
+              <button type="submit" ng-click="ctrl.listByOmdb(ctrl.movie.originalTitle)"
+                      ng-show="!ctrl.showCard" class="btn btn-primary">Search <i class="md md-send"></i>
+
                 <div class="ripple-wrapper"></div>
               </button>
-              <button type="submit" ng-click="ctrl.save(ctrl.movie)" ng-show="ctrl.showCard" class="btn btn-primary">Save <i class="md md-send"></i>
+              <button type="submit" ng-click="ctrl.save(ctrl.movie)" ng-show="ctrl.showCard"
+                      class="btn btn-primary">Save <i class="md md-send"></i>
+
                 <div class="ripple-wrapper"></div>
               </button>
               &nbsp;
@@ -63,7 +68,7 @@
     </div>
 
     <div class="col-md-12" ng-show="ctrl.showCard">
-      <div class="card col-md-2">
+      <div class="card col-md-4">
         <div class="card-image">
           <img ng-src="{{ctrl.movie.poster}}">
           <span class="card-title">{{ctrl.movie.title}}</span>
@@ -72,35 +77,91 @@
           <p>{{ctrl.movie.plot}}</p>
         </div>
         <div class="card-action clearfix">
-          <a href="" class="btn btn-link btn-icon"><i class="md md-favorite red-text"></i>{{ctrl.movie.rating}}</a>
-          <a href="" class="btn btn-link btn-icon"><i class="md md-refresh black-text"></i>{{ctrl.movie.imdbRating}}</a>
+          <a href="" class="btn btn-link btn-icon"><i class="md md-star yellow-text"></i>{{ctrl.movie.rating}}</a>
+          <a href="" class="btn btn-link btn-icon"><i class="md md-star red-text"></i>{{ctrl.movie.imdbRating}}</a>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-12">
+          <form class="form-horizontal placeholder-form ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.movie)">
+            <fieldset>
+              <div class="form-group">
+                <label for="inputTitle" class="control-label">Title</label>
+                <input type="text" id="inputTitle" class="form-control"
+                       ng-model="ctrl.movie.title">
+              </div>
+              <div class="form-group">
+                <label for="inputOriginalTitle" class="control-label">Original Title</label>
+                <input type="text" id="inputOriginalTitle" class="form-control"
+                       ng-model="ctrl.movie.originalTitle">
+              </div>
+              <div class="form-group">
+                <label for="inputImdbId" class="control-label">Imdb Id</label>
+                <input type="text" id="inputImdbId" class="form-control"
+                       ng-model="ctrl.movie.imdbID">
+              </div>
+              <div class="form-group">
+                <label for="inputYear" class="control-label">Year &nbsp;</label>
+                <input type="text" id="inputYear" class="form-control"
+                       ng-model="ctrl.movie.year">
+              </div>
+              <div class="form-group">
+                <label for="inputDuration" class="control-label">Duration</label>
+                <input type="text" id="inputDuration" class="form-control"
+                       ng-model="ctrl.movie.duration">
+              </div>
+              <div class="form-group" ng-if="ctrl.movie.releasedDate === null || ctrl.movie.releasedDate === undefined || ctrl.movie.releasedDate === ''">
+                <label for="inputReleasedNew" class="control-label">Released</label>
+                <input type="date" id="inputReleasedNew" class="form-control" ng-model="ctrl.movie.releasedDate">
+              </div>
+              <div class="form-group" ng-if="ctrl.movie.releasedDate !== null && ctrl.movie.releasedDate !== undefined && ctrl.movie.releasedDate !== ''">
+                <label for="inputReleased" class="control-label">Released</label>
+                <input type="text" id="inputReleased" class="form-control" disabled value="{{ctrl.movie.releasedDate | date :'dd/MM/yyyy'}}">
+              </div>
+              <div class="form-group">
+                <label for="inputDirector" class="control-label">Director</label>
+                <input type="text" id="inputDirector" class="form-control"
+                       ng-model="ctrl.movie.director">
+              </div>
+              <div class="form-group">
+                <label for="inputGenre" class="control-label">Genre</label>
+                <ui-select id="inputGenre" ng-model="ctrl.movie.genres"
+                           theme="bootstrap">
+                  <ui-select-match allow-clear="true" placeholder="Select or search...">
+                    {{$select.selected}}
+                  </ui-select-match>
+                  <ui-select-choices repeat="genre in ctrl.genres | filter: $select.search">
+                    <span ng-bind-html="genre | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+              <div class="form-group">
+                <label for="inputRating" class="control-label">Rating</label>
+                <input type="text" id="inputRating" class="form-control"
+                       ng-model="ctrl.movie.rating">
+              </div>
+              <div class="form-group">
+                <label for="inputImdbRating" class="control-label">Imdb Rating</label>
+                <input type="text" id="inputImdbRating" class="form-control"
+                       ng-model="ctrl.movie.imdbRating">
+              </div>
+              <div class="form-group">
+                <label for="inputPoster" class="control-label">Url Poster</label>
+                <input type="text" id="inputPoster" class="form-control"
+                       ng-model="ctrl.movie.poster">
+              </div>
+              <div class="form-group">
+                <label for="inputPlot" class="control-label">Plot</label>
+                <textarea class="form-control vertical" rows="3" id="inputPlot" ng-model="ctrl.movie.plot"></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" ng-click="ctrl.reset()" class="btn btn-default">Cancel</button>
+              </div>
+            </fieldset>
+          </form>
         </div>
       </div>
     </div>
-
-    <!--<div class="col-md-12">-->
-      <!--<div class="well white">-->
-        <!--<form class="form-floating ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.movie)">-->
-          <!--<fieldset>-->
-            <!--<span class="help-block">Please fill out the following form below.</span>-->
-
-            <!--<div class="form-group">-->
-              <!--<label for="inputTitle" class="control-label">Title</label>-->
-              <!--<input type="text" id="inputTitle" class="form-control" ng-model="ctrl.movie.title">-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-              <!--<label for="inputOriginalTitle" class="control-label">Original Title</label>-->
-              <!--<input type="text" id="inputOriginalTitle" class="form-control" ng-model="ctrl.movie.originalTitle">-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-              <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-              <!--<button type="reset" class="btn btn-default">Cancel</button>-->
-            <!--</div>-->
-          <!--</fieldset>-->
-        <!--</form>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
+  </div>
 </section>

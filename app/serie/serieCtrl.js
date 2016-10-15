@@ -3,9 +3,9 @@
 
   angular
     .module('portalMovie.serie')
-    .controller('SerieCtrl', ['$scope', '$http', 'Utils', 'Factory', 'MovieService', 'OmdbService', SerieCtrl]);
+    .controller('SerieCtrl', ['$scope', '$http', '$filter', 'Utils', 'Factory', 'MovieService', 'OmdbService', 'GenreService', SerieCtrl]);
 
-  function SerieCtrl($scope, $http, Utils, Factory, MovieService, OmdbService) {
+  function SerieCtrl($scope, $http, $filter, Utils, Factory, MovieService, OmdbService, GenreService) {
 
     var ctrl = this;
     ctrl.alerts = [];
@@ -14,6 +14,7 @@
     ctrl.movies = [];
     ctrl.movie = {};
     ctrl.movie.selected = {};
+    ctrl.genres = [];
 
     ctrl.listSerie = listSerie;
     ctrl.listByTitle = listByTitle;
@@ -23,6 +24,7 @@
     ctrl.reset = reset;
 
     ctrl.listByOmdb = listByOmdb;
+    ctrl.listGenres = listGenres;
 
     ctrl.showCard = false;
 
@@ -130,7 +132,10 @@
       ctrl.alerts = [];
 
       if (movie !== undefined) {
+        var genres = movie.genres;
+        movie.genres = [];
         movie.selected = null;
+        movie.genres.push(genres);
 
         MovieService.save(movie)
           .success(function (response) {
@@ -179,6 +184,20 @@
       }
     }
 
+    function listGenres() {
+      GenreService.list()
+        .success(function (response, status) {
+          if (response) {
+            ctrl.genres = [];
+            angular.forEach(response, function (genre) {
+              ctrl.genres.push(genre);
+            });
+          }
+        }).error(function (response, status) {
+          console.log('Request falhou ' + response + ', status code: ' + status);
+        });
+    }
+
     function setMovie(movie) {
       ctrl.movie = {
         code: movie.code,
@@ -186,7 +205,7 @@
         originalTitle: movie.originalTitle,
         duration: movie.duration,
         type: movie.type,
-        genres: movie.genres,
+        genres: movie.type,
         releasedDate: movie.releasedDate,
         year: movie.year,
         plot: movie.plot,
@@ -199,12 +218,15 @@
     }
 
     function setMovieByOmdb(movieOmdb) {
+      var genres = movieOmdb.genres;
+      var date = ($filter('date')(new Date(movieOmdb.Released), 'yyyy-MM-dd\'T\'HH:mm:ss'));
+
       ctrl.movie = {
         title: movieOmdb.Title,
         originalTitle: movieOmdb.Title,
         duration: movieOmdb.Runtime,
         type: movieOmdb.Type,
-        releasedDate: movieOmdb.releasedDate,
+        releasedDate: date,
         year: movieOmdb.Year,
         plot: movieOmdb.Plot,
         director: movieOmdb.Director,
@@ -226,6 +248,7 @@
 
     function init() {
       reset();
+      listGenres();
       listSerie();
     }
   }
