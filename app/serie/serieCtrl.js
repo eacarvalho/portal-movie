@@ -219,7 +219,7 @@
 
     function setMovieByOmdb(movieOmdb) {
       var genres = movieOmdb.genres;
-      var date = ($filter('date')(new Date(movieOmdb.Released), 'yyyy-MM-dd\'T\'HH:mm:ss'));
+      var date = $filter('date')(new Date(movieOmdb.Released), 'yyyy-MM-dd');
 
       ctrl.movie = {
         title: movieOmdb.Title,
