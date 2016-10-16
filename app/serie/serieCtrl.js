@@ -223,6 +223,7 @@
         type: movieOmdb.Type,
         releasedDate: date,
         year: movieOmdb.Year,
+        genres: genres,
         plot: movieOmdb.Plot,
         director: movieOmdb.Director,
         rating: movieOmdb.rating,

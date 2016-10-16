@@ -49,13 +49,8 @@
             </div>
 
             <div class="col-md-10 pull-left">
-              <button type="submit" ng-click="ctrl.listByOmdb(ctrl.movie.originalTitle)"
-                      ng-show="!ctrl.showCard" class="btn btn-primary">Search <i class="md md-send"></i>
-
-                <div class="ripple-wrapper"></div>
-              </button>
-              <button type="submit" ng-click="ctrl.save(ctrl.movie)" ng-show="ctrl.showCard"
-                      class="btn btn-primary">Save <i class="md md-send"></i>
+              <button type="submit" ng-click="ctrl.listByOmdb(ctrl.movie.originalTitle)" class="btn btn-primary">Search
+                <i class="md md-send"></i>
 
                 <div class="ripple-wrapper"></div>
               </button>
@@ -112,7 +107,8 @@
               </div>
               <div class="form-group">
                 <label for="inputReleasedNew" class="control-label">Released</label>
-                <input type="text" id="inputReleasedNew" class="form-control locked" ng-model="ctrl.movie.releasedDate" date-picker="{dateFormat: 'yy-mm-dd',yearRange: '1900:2050'}" readonly>
+                <input type="text" id="inputReleasedNew" class="form-control locked" ng-model="ctrl.movie.releasedDate"
+                       date-picker="{dateFormat: 'yy-mm-dd',yearRange: '1900:2050'}" readonly>
               </div>
               <div class="form-group">
                 <label for="inputDirector" class="control-label">Director</label>
@@ -121,12 +117,11 @@
               </div>
               <div class="form-group">
                 <label for="inputGenre" class="control-label">Genre</label>
-                <ui-select id="inputGenre" ng-model="ctrl.movie.genres"
-                           theme="bootstrap">
+                <ui-select multiple id="inputGenre" ng-model="ctrl.movie.genres" theme="bootstrap">
                   <ui-select-match allow-clear="true" placeholder="Select or search...">
                     {{$select.selected}}
                   </ui-select-match>
-                  <ui-select-choices repeat="genre in ctrl.genres | filter: $select.search">
+                  <ui-select-choices repeat="genre in ctrl.genres | filter: $select.search track by genre">
                     <span ng-bind-html="genre | highlight: $select.search"></span>
                   </ui-select-choices>
                 </ui-select>
