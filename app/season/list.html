@@ -6,7 +6,7 @@
 
 <content-for for="navbar-content"></content-for>
 
-<section class="lists white well">
+<section class="lists">
 
   <div class="row">
     <div class="col-md-12" id="mensagens">
@@ -22,7 +22,9 @@
       <div class="page-header">
         <h1><i class="md md-camera"></i> List of episodes</h1>
 
-        <p class="lead"><span ng-if="ctrl.showSerieDetails()"><b>{{ctrl.serie.selected.title}}</b> - Season {{ctrl.serie.selected.season}} of {{ctrl.serie.selected.totalSeasons}}</span>
+        <p class="lead">
+          <span ng-if="!ctrl.showSerieDetails()">Catch up your episodes</span>
+          <span ng-if="ctrl.showSerieDetails()"><b>{{ctrl.serie.selected.title}}</b> - Season {{ctrl.serie.selected.season}} of {{ctrl.serie.selected.totalSeasons}}</span>
         </p>
       </div>
     </div>
