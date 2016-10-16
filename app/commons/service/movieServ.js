@@ -30,7 +30,7 @@
     };
 
     service.save = function (movie) {
-      return $http.post('/movies', movie)
+      return $http.post('/movies?accessImdb=false', movie)
         .success(function (data) {
           return data;
         });

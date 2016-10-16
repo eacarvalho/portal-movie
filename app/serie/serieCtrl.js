@@ -13,7 +13,7 @@
     ctrl.moviesCombo = [];
     ctrl.movies = [];
     ctrl.movie = {};
-    ctrl.movie.selected = {};
+    ctrl.movieSelected = {};
     ctrl.genres = [];
 
     ctrl.listSerie = listSerie;
@@ -45,7 +45,7 @@
           if (response) {
             ctrl.moviesCombo = [];
             ctrl.movies = [];
-            ctrl.movie.selected = {};
+            ctrl.movieSelected = {};
 
             setMovieList(response);
 
@@ -65,11 +65,11 @@
             if (response) {
               ctrl.totalItems = 1;
               ctrl.movies = [];
-              ctrl.movie.selected = {};
+              ctrl.movieSelected = {};
 
               setMovie(response);
               ctrl.movies.push(ctrl.movie);
-              ctrl.movie.selected = ctrl.movie;
+              ctrl.movieSelected = ctrl.movie;
             }
           }).error(function (response, status) {
             console.log('Request falhou ' + response + ', status code: ' + status);
@@ -106,37 +106,32 @@
     function setMovieList(response) {
       ctrl.totalItems = response.totalElements;
       ctrl.movies = [];
-      ctrl.movie.selected = {};
+      ctrl.movieSelected = {};
 
       angular.forEach(response.content, function (movie) {
         setMovie(movie);
         ctrl.movies.push(ctrl.movie);
       });
 
-      ctrl.movie.selected = ctrl.movie;
+      ctrl.movieSelected = ctrl.movie;
       ctrl.movie = {};
     }
 
     function setMovieListByOmdb(response) {
       ctrl.totalItems = 1;
       ctrl.movies = [];
-      ctrl.movie.selected = {};
+      ctrl.movieSelected = {};
 
       setMovieByOmdb(response);
       ctrl.movies.push(ctrl.movie);
 
-      ctrl.movie.selected = ctrl.movie;
+      ctrl.movieSelected = ctrl.movie;
     }
 
     function save(movie) {
       ctrl.alerts = [];
 
       if (movie !== undefined) {
-        var genres = movie.genres;
-        movie.genres = [];
-        movie.selected = null;
-        movie.genres.push(genres);
-
         MovieService.save(movie)
           .success(function (response) {
             if (response) {
@@ -205,7 +200,7 @@
         originalTitle: movie.originalTitle,
         duration: movie.duration,
         type: movie.type,
-        genres: movie.type,
+        genres: movie.genres,
         releasedDate: movie.releasedDate,
         year: movie.year,
         plot: movie.plot,
@@ -218,7 +213,7 @@
     }
 
     function setMovieByOmdb(movieOmdb) {
-      var genres = movieOmdb.genres;
+      var genres = Utils.convertToArray(movieOmdb.Genre);
       var date = $filter('date')(new Date(movieOmdb.Released), 'yyyy-MM-dd');
 
       ctrl.movie = {
@@ -242,7 +237,7 @@
       ctrl.totalItems = 0;
       ctrl.movie = {};
       ctrl.movies = [];
-      ctrl.movie.selected = {};
+      ctrl.movieSelected = {};
       ctrl.showCard = false;
     }
 
