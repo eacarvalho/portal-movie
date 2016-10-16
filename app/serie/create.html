@@ -77,77 +77,115 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="col-md-12">
+        <div class="well">
           <form class="form-horizontal placeholder-form ng-pristine ng-valid" ng-submit="ctrl.save(ctrl.movie)">
             <fieldset>
               <div class="form-group">
-                <label for="inputTitle" class="control-label">Title</label>
-                <input type="text" id="inputTitle" class="form-control"
-                       ng-model="ctrl.movie.title">
+                <label for="inputTitle" class="col-md-2 control-label">Title</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputTitle" class="form-control"
+                         ng-model="ctrl.movie.title">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputOriginalTitle" class="control-label">Original Title</label>
-                <input type="text" id="inputOriginalTitle" class="form-control"
-                       ng-model="ctrl.movie.originalTitle">
+                <label for="inputOriginalTitle" class="col-md-2 control-label">Original Title</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputOriginalTitle" class="form-control"
+                         ng-model="ctrl.movie.originalTitle">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputImdbId" class="control-label">Imdb Id</label>
-                <input type="text" id="inputImdbId" class="form-control"
-                       ng-model="ctrl.movie.imdbID">
+                <label for="inputImdbId" class="col-md-2 control-label">Imdb Id</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputImdbId" class="form-control"
+                         ng-model="ctrl.movie.imdbID">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputYear" class="control-label">Year &nbsp;</label>
-                <input type="text" id="inputYear" class="form-control"
-                       ng-model="ctrl.movie.year">
+                <label for="inputYear" class="col-md-2 control-label">Year &nbsp;</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputYear" class="form-control"
+                         ng-model="ctrl.movie.year">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputDuration" class="control-label">Duration</label>
-                <input type="text" id="inputDuration" class="form-control"
-                       ng-model="ctrl.movie.duration">
+                <label for="inputDuration" class="col-md-2 control-label">Duration</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputDuration" class="form-control"
+                         ng-model="ctrl.movie.duration">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputReleasedNew" class="control-label">Released</label>
-                <input type="text" id="inputReleasedNew" class="form-control locked" ng-model="ctrl.movie.releasedDate"
-                       date-picker="{dateFormat: 'yy-mm-dd',yearRange: '1900:2050'}" readonly>
+                <label for="inputReleasedNew" class="col-md-2 control-label">Released</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputReleasedNew" class="form-control locked"
+                         ng-model="ctrl.movie.releasedDate"
+                         date-picker="{dateFormat: 'yy-mm-dd',yearRange: '1900:2050'}" readonly>
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputDirector" class="control-label">Director</label>
-                <input type="text" id="inputDirector" class="form-control"
-                       ng-model="ctrl.movie.director">
+                <label for="inputDirector" class="col-md-2 control-label">Director</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputDirector" class="form-control"
+                         ng-model="ctrl.movie.director">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputGenre" class="control-label">Genre</label>
-                <ui-select multiple id="inputGenre" ng-model="ctrl.movie.genres" theme="bootstrap">
-                  <ui-select-match allow-clear="true" placeholder="Select or search...">
-                    {{$select.selected}}
-                  </ui-select-match>
-                  <ui-select-choices repeat="genre in ctrl.genres | filter: $select.search track by genre">
-                    <span ng-bind-html="genre | highlight: $select.search"></span>
-                  </ui-select-choices>
-                </ui-select>
+                <label for="inputGenre" class="col-md-2 control-label">Genre</label>
+
+                <div class="col-md-10 filled">
+                  <ui-select multiple id="inputGenre" ng-model="ctrl.movie.genres" theme="bootstrap">
+                    <ui-select-match allow-clear="true" placeholder="Select or search...">
+                      {{$select.selected}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="genre in ctrl.genres | filter: $select.search track by genre">
+                      <span ng-bind-html="genre | highlight: $select.search"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputRating" class="control-label">Rating</label>
-                <input type="text" id="inputRating" class="form-control"
-                       ng-model="ctrl.movie.rating">
+                <label for="inputRating" class="col-md-2 control-label">Rating</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputRating" class="form-control"
+                         ng-model="ctrl.movie.rating"></div>
               </div>
               <div class="form-group">
-                <label for="inputImdbRating" class="control-label">Imdb Rating</label>
-                <input type="text" id="inputImdbRating" class="form-control"
-                       ng-model="ctrl.movie.imdbRating">
+                <label for="inputImdbRating" class="col-md-2 control-label">Imdb Rating</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputImdbRating" class="form-control"
+                         ng-model="ctrl.movie.imdbRating">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputPoster" class="control-label">Url Poster</label>
-                <input type="text" id="inputPoster" class="form-control"
-                       ng-model="ctrl.movie.poster">
+                <label for="inputPoster" class="col-md-2 control-label">Url Poster</label>
+
+                <div class="col-md-10 filled">
+                  <input type="text" id="inputPoster" class="form-control"
+                         ng-model="ctrl.movie.poster">
+                </div>
               </div>
               <div class="form-group">
-                <label for="inputPlot" class="control-label">Plot</label>
-                <textarea class="form-control vertical" rows="3" id="inputPlot" ng-model="ctrl.movie.plot"></textarea>
+                <label for="inputPlot" class="col-md-2 control-label">Plot</label>
+
+                <div class="col-md-10 filled">
+                  <textarea class="form-control vertical" rows="3" id="inputPlot" ng-model="ctrl.movie.plot"></textarea>
+                </div>
               </div>
               <div class="form-group">
+                <div class="col-md-10 pull-right">
                 <button type="submit" class="btn btn-primary">Save</button>
                 <button type="reset" ng-click="ctrl.reset()" class="btn btn-default">Cancel</button>
+                  </div>
               </div>
             </fieldset>
           </form>
