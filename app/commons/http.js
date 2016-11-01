@@ -20,6 +20,8 @@
 
             ShyHttp.get = function (url, config) {
                 config = angular.merge((config || {}), configDefaults);
+                // $http.defaults.headers.common['Authorization'] = 'Basic dXNlcjpwYXNzd29yZA==';
+                // $http.defaults.headers.common['Authorization'] = 'Basic dXNlcjo5MmE5ZTE4Ny0yZDQzLTQzOTQtOTE0My05NzVhZTIzNTFjZjI=';
                 return $http.get(api + url, config);
             };
 

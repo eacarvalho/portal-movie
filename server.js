@@ -3,7 +3,7 @@ var app = express();
 
 var fs = require('fs');
 var apiUrl = process.env.API_URL;
-var configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'http://localhost:8080\'});'
+var configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'http://localhost:8080/api\'});'
 
 if (apiUrl !== undefined) {
     configFileContent = 'angular.module(\'config\', []).constant(\'ENV\', {movieApi: \'' + apiUrl + '\'});'
